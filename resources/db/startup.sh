@@ -5,9 +5,9 @@ DUMP_FILE=./dump/`ls -t1 dump | head -n 1` # latest created database dump
 CONTAINER_NAME=mysql_bus_station_app
 EXISTING_CONTAINERS=`docker ps -a | grep $CONTAINER_NAME | wc -l`
 
-MOUNT_VOLUME_DIR=~/$APP_NAME
+#MOUNT_VOLUME_DIR=~/$APP_NAME
 
-mkdir -p $MOUNT_VOLUME_DIR
+#mkdir -p $MOUNT_VOLUME_DIR
 
 if [ $EXISTING_CONTAINERS -gt 0 ]
 then
@@ -16,10 +16,10 @@ then
 	exit 1
 fi
 
+#	--mount type=volume,src=mysql_volume,dst=$MOUNT_VOLUME_DIR \
 docker run \
 	-e MYSQL_ALLOW_EMPTY_PASSWORD=true \
 	-e MYSQL_DATABASE=$DATABASE_NAME \
-	--mount type=volume,src=mysql_volume,dst=$MOUNT_VOLUME_DIR \
 	-p 3306:3306 \
 	-d \
 	--name $CONTAINER_NAME \

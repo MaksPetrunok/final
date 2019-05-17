@@ -3,3 +3,5 @@
 *.class
 *.swp
 *~
+target/
+tmp/
